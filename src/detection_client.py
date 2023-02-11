@@ -20,6 +20,10 @@ class VTDetectionClient(DetectionClient):
         self.vtclient = vt.Client(self.api_key)
 
     def get_file_analysis(self, file_hash: str) -> Mapping:
-        file = self.vtclient.get_object(f"/files/{file_hash}")
-        stats = file.last_analysis_stats
+        try:
+            file = self.vtclient.get_object(f"/files/{file_hash}")
+            stats = file.last_analysis_stats
+        except vt.error.APIError as error:
+            print(f"Error during file {file_hash} analysis due to {error}")
+            stats = {}
         return {"file_hash": file_hash, "last_analysis_stats": stats}
