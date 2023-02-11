@@ -36,4 +36,3 @@ def test_get_file_analysis(test_client, mocker, mocked_response):
     assert isinstance(response, Mapping)
     assert response.get("file_hash", False)
     assert response.get("last_analysis_stats", False)
-    assert response.get("current_total_detections", False)

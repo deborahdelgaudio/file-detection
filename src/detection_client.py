@@ -22,4 +22,4 @@ class VTDetectionClient(DetectionClient):
     def get_file_analysis(self, file_hash: str) -> Mapping:
         file = self.vtclient.get_object(f"/files/{file_hash}")
         stats = file.last_analysis_stats
-        return {"file_hash": file_hash, "last_analysis_stats": stats, "current_total_detections": stats.get("malicious")}
+        return {"file_hash": file_hash, "last_analysis_stats": stats}
