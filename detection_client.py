@@ -20,5 +20,5 @@ class VTDetectionClient(DetectionClient):
         self.vtclient = vt.Client(self.api_key)
 
     def get_file_analysis(self, file_hash: str) -> Mapping:
-        file = self.vtclient.get_object(f"/file/{file_hash}")
+        file = self.vtclient.get_object(f"/files/{file_hash}")
         return file.last_analysis_stats
